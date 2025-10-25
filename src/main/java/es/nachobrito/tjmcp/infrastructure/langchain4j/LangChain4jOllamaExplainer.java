@@ -34,7 +34,7 @@ import java.util.List;
  * @author nacho
  */
 @Singleton
-@Requires(property = "explainer", value = "langchain4j-ollama")
+@Requires(property = "tjmcp.explainer", value = "langchain4j-ollama")
 public class LangChain4jOllamaExplainer implements CodeExplainer {
   private final String baseUrl;
   private final String chatModelName;
@@ -45,9 +45,9 @@ public class LangChain4jOllamaExplainer implements CodeExplainer {
   private ChatModel chatModel;
 
   public LangChain4jOllamaExplainer(
-      @Value("${langchain4j.ollama.url}") String baseUrl,
-      @Value("${langchain4j.ollama.model}") String model,
-      @Value("${langchain4j.ollama.temperature}") String temperature,
+      @Value("${tjmcp.langchain4j.ollama.url}") String baseUrl,
+      @Value("${tjmcp.langchain4j.ollama.model}") String model,
+      @Value("${tjmcp.langchain4j.ollama.temperature}") String temperature,
       ResourceResolver resourceResolver) {
     this.baseUrl = baseUrl;
     this.chatModelName = model;

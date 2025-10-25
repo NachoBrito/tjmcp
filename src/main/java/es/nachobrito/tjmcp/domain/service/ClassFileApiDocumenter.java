@@ -22,12 +22,15 @@ import java.io.IOException;
 import java.lang.classfile.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author nacho
  */
 @Singleton
 public class ClassFileApiDocumenter implements ClassDocumenter {
+  private final Logger log = LoggerFactory.getLogger(getClass());
 
   private final ReportBuilder reportBuilder;
   private final CodeExplainer codeExplainer;
@@ -39,6 +42,8 @@ public class ClassFileApiDocumenter implements ClassDocumenter {
 
   @Override
   public String document(Path sourceFile) {
+    log.debug("Documenting class file: {}", sourceFile.toString());
+
     byte[] bytes;
     try {
       bytes = Files.readAllBytes(sourceFile);
@@ -51,12 +56,14 @@ public class ClassFileApiDocumenter implements ClassDocumenter {
 
   @Override
   public String document(String className, Path jarFilePath) {
+    log.debug("Documenting class {} from jar file: {}", className, jarFilePath.toString());
+
     var bytes = JarFileHelper.readClass(className, jarFilePath);
     var classModel = ClassFile.of().parse(bytes);
     return document(classModel);
   }
 
-  private String document(ClassModel classModel) {
+  String document(ClassModel classModel) {
     var model = ReportModel.with(classModel, codeExplainer);
     return reportBuilder.build(model);
   }

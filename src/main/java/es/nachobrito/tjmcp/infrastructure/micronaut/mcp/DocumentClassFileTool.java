@@ -36,7 +36,7 @@ public class DocumentClassFileTool {
   @Tool(
       title = "Document a class file",
       description =
-          "Returns a MarkDown report describing the class defined in the provided class file.",
+          "Returns a report describing how to use the class defined in the provided class file.",
       annotations =
           @Tool.ToolAnnotations(
               readOnlyHint = true,
@@ -56,7 +56,7 @@ public class DocumentClassFileTool {
   @Tool(
       title = "Document a class inside a Jar file",
       description =
-          "Returns a MarkDown report describing the class with the given name, found inside a Jar file.",
+          "Returns a report describing how to use the class with the given name, found inside a Jar file.",
       annotations =
           @Tool.ToolAnnotations(
               readOnlyHint = true,
