@@ -14,25 +14,30 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp;
+package es.nachobrito.tjmcp.domain.service.model;
 
-import io.micronaut.core.io.ResourceResolver;
-import io.micronaut.core.io.scan.ClassPathResourceLoader;
-import java.io.IOException;
-import java.nio.charset.Charset;
+import java.lang.classfile.ClassModel;
 
 /**
  * @author nacho
  */
-public class ResourceUtil {
-  public static String getResourceAsString(String path, ResourceResolver resourceResolver) {
-      try {
-          var loader = resourceResolver.getLoader(ClassPathResourceLoader.class).orElseThrow();
-          return new String(
-              loader.getResourceAsStream(path).orElseThrow().readAllBytes(),
-              Charset.defaultCharset());
-      } catch (IOException e) {
-          throw new RuntimeException(e);
-      }
+public enum Type {
+  CLASS("class"),
+  INTERFACE("interface"),
+  ENUM("enum"),
+  MODULE_INFO("module-info");
+
+  final String name;
+
+  Type(String name) {
+    this.name = name;
+  }
+
+  // todo: implement logic to identify interfaces and enums
+  static Type of(ClassModel model) {
+    if (model.isModuleInfo()) {
+      return MODULE_INFO;
+    }
+    return CLASS;
   }
 }

@@ -14,15 +14,15 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.infrastructure.langchain4j;
+package es.nachobrito.tjmcp.infrastructure.langchain4j;
 
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.chat.request.ChatRequest;
 import dev.langchain4j.model.ollama.OllamaChatModel;
-import es.nachobrito.jmcp.ResourceUtil;
-import es.nachobrito.jmcp.domain.service.CodeExplainer;
+import es.nachobrito.tjmcp.ResourceUtil;
+import es.nachobrito.tjmcp.domain.service.CodeExplainer;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.annotation.Value;
 import io.micronaut.core.io.ResourceResolver;

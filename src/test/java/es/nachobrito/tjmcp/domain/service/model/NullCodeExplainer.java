@@ -14,25 +14,17 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service.model;
+package es.nachobrito.tjmcp.domain.service.model;
 
-import java.lang.classfile.constantpool.ClassEntry;
-import java.lang.constant.ClassDesc;
+import es.nachobrito.tjmcp.domain.service.CodeExplainer;
+import java.lang.classfile.CodeModel;
 
 /**
  * @author nacho
  */
-public class ClassNameHelper {
-  static String getFullName(ClassEntry classEntry) {
-    return getFullName(classEntry.asSymbol());
-  }
-
-  public static String getFullName(ClassDesc classDesc) {
-    var packageName = classDesc.packageName();
-    var suffix = classDesc.isArray() ? "[]" : "";
-    if (packageName != null && !packageName.isEmpty()) {
-      return classDesc.packageName() + "." + classDesc.displayName() + suffix;
-    }
-    return classDesc.displayName() + suffix;
+public class NullCodeExplainer implements CodeExplainer {
+  @Override
+  public String explainCode(CodeModel codeModel) {
+    return "empty code explanation";
   }
 }

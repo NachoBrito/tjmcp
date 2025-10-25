@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service;
+package es.nachobrito.tjmcp.domain.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +38,7 @@ class ClassFileApiDocumenterIT {
   @Test
   void testDocumentClassFile() {
     var classFilePath =
-        "target/classes/es/nachobrito/jmcp/domain/service/ClassFileApiDocumenter.class";
+        "target/classes/es/nachobrito/tjmcp/domain/service/ClassFileApiDocumenter.class";
     var path = Path.of("").resolve(classFilePath).toAbsolutePath();
 
     var report = classDocumenter.document(path);

@@ -14,9 +14,9 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service;
+package es.nachobrito.tjmcp.domain.service;
 
-import es.nachobrito.jmcp.domain.service.model.ReportModel;
+import es.nachobrito.tjmcp.domain.service.model.ReportModel;
 import jakarta.inject.Singleton;
 import java.io.IOException;
 import java.lang.classfile.*;

@@ -14,17 +14,14 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service.model;
+package es.nachobrito.tjmcp.domain.service;
 
-import es.nachobrito.jmcp.domain.service.CodeExplainer;
-import java.lang.classfile.CodeModel;
+import es.nachobrito.tjmcp.domain.service.model.ReportModel;
 
 /**
  * @author nacho
  */
-public class NullCodeExplainer implements CodeExplainer {
-  @Override
-  public String explainCode(CodeModel codeModel) {
-    return "empty code explanation";
-  }
+public interface ReportBuilder {
+
+  String build(ReportModel reportModel);
 }

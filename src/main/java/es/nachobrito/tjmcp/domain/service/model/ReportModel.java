@@ -14,9 +14,9 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service.model;
+package es.nachobrito.tjmcp.domain.service.model;
 
-import es.nachobrito.jmcp.domain.service.CodeExplainer;
+import es.nachobrito.tjmcp.domain.service.CodeExplainer;
 import java.lang.classfile.ClassModel;
 
 /**

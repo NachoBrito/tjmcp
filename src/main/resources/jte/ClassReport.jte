@@ -1,4 +1,4 @@
-@import es.nachobrito.jmcp.domain.service.model.ReportModel
+@import es.nachobrito.tjmcp.domain.service.model.ReportModel
 @import gg.jte.support.ForSupport
 @param ReportModel model
 !{

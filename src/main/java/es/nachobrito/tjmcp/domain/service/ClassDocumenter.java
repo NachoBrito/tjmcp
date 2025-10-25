@@ -14,20 +14,19 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service;
+package es.nachobrito.tjmcp.domain.service;
 
-import io.micronaut.context.annotation.Requires;
-import jakarta.inject.Singleton;
-import java.lang.classfile.CodeModel;
+import java.nio.file.Path;
 
 /**
  * @author nacho
  */
-@Singleton
-@Requires(property = "explainer", value = "debug-string")
-public class DebugStringExplainer implements CodeExplainer {
-  @Override
-  public String explainCode(CodeModel codeModel) {
-    return codeModel.toDebugString();
-  }
+public interface ClassDocumenter {
+  /**
+   * @param classFile the source path
+   * @return text documenting the class
+   */
+  String document(Path classFile);
+
+  String document(String className, Path jarFile);
 }

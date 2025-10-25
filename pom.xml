@@ -19,25 +19,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>es.nachobrito</groupId>
-    <artifactId>jmcp</artifactId>
+    <artifactId>tjmcp</artifactId>
     <version>0.1</version>
     <packaging>${packaging}</packaging>
 
     <parent>
         <groupId>io.micronaut.platform</groupId>
         <artifactId>micronaut-parent</artifactId>
-        <version>4.9.0</version>
+        <version>4.10.0</version>
     </parent>
     <properties>
         <packaging>jar</packaging>
         <jdk.version>25</jdk.version>
         <release.version>25</release.version>
-        <micronaut.version>4.9.0</micronaut.version>
+        <micronaut.version>4.10.0</micronaut.version>
         <micronaut.aot.enabled>false</micronaut.aot.enabled>
         <micronaut.aot.packageName>es.nachobrito.aot.generated</micronaut.aot.packageName>
         <micronaut.runtime>netty</micronaut.runtime>
         <exec.mainClass>es.nachobrito.Application</exec.mainClass>
-        <jlama.version>0.8.4</jlama.version>
     </properties>
 
     <repositories>
@@ -49,11 +48,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.micronaut</groupId>
-            <artifactId>micronaut-http-server-netty</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>io.micronaut.serde</groupId>
             <artifactId>micronaut-serde-jackson</artifactId>
             <scope>compile</scope>
@@ -62,11 +56,6 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut</groupId>
-            <artifactId>micronaut-http-client</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.micronaut.test</groupId>
@@ -97,6 +86,10 @@
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-ollama</artifactId>
             <version>1.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.mcp</groupId>
+            <artifactId>micronaut-mcp-server-java-sdk</artifactId>
         </dependency>
     </dependencies>
     <build>
@@ -139,7 +132,7 @@
                     </annotationProcessorPaths>
                     <compilerArgs>
                         <arg>-Amicronaut.processing.group=es.nachobrito</arg>
-                        <arg>-Amicronaut.processing.module=jmcp</arg>
+                        <arg>-Amicronaut.processing.module=tjmcp</arg>
                     </compilerArgs>
                     <source>25</source>
                     <target>25</target>

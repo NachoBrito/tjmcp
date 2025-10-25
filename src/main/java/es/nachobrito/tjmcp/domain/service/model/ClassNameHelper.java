@@ -14,30 +14,25 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service.model;
+package es.nachobrito.tjmcp.domain.service.model;
 
-import java.lang.classfile.ClassModel;
+import java.lang.classfile.constantpool.ClassEntry;
+import java.lang.constant.ClassDesc;
 
 /**
  * @author nacho
  */
-public enum Type {
-  CLASS("class"),
-  INTERFACE("interface"),
-  ENUM("enum"),
-  MODULE_INFO("module-info");
-
-  final String name;
-
-  Type(String name) {
-    this.name = name;
+public class ClassNameHelper {
+  static String getFullName(ClassEntry classEntry) {
+    return getFullName(classEntry.asSymbol());
   }
 
-  // todo: implement logic to identify interfaces and enums
-  static Type of(ClassModel model) {
-    if (model.isModuleInfo()) {
-      return MODULE_INFO;
+  public static String getFullName(ClassDesc classDesc) {
+    var packageName = classDesc.packageName();
+    var suffix = classDesc.isArray() ? "[]" : "";
+    if (packageName != null && !packageName.isEmpty()) {
+      return classDesc.packageName() + "." + classDesc.displayName() + suffix;
     }
-    return CLASS;
+    return classDesc.displayName() + suffix;
   }
 }

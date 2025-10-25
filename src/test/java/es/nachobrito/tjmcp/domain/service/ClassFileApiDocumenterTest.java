@@ -14,12 +14,12 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service;
+package es.nachobrito.tjmcp.domain.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import es.nachobrito.jmcp.domain.service.model.NullCodeExplainer;
-import es.nachobrito.jmcp.infrastructure.jte.JteReportBuilder;
+import es.nachobrito.tjmcp.domain.service.model.NullCodeExplainer;
+import es.nachobrito.tjmcp.infrastructure.jte.JteReportBuilder;
 import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -33,7 +33,7 @@ class ClassFileApiDocumenterTest {
   @Test
   void testDocumentClassFile() {
     var classFilePath =
-        "target/classes/es/nachobrito/jmcp/domain/service/ClassFileApiDocumenter.class";
+        "target/classes/es/nachobrito/tjmcp/domain/service/ClassFileApiDocumenter.class";
     var path = Path.of("").resolve(classFilePath).toAbsolutePath();
 
     var documenter = new ClassFileApiDocumenter(new JteReportBuilder(), new NullCodeExplainer());

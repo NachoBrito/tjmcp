@@ -14,10 +14,10 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.infrastructure.jte;
+package es.nachobrito.tjmcp.infrastructure.jte;
 
-import es.nachobrito.jmcp.domain.service.ReportBuilder;
-import es.nachobrito.jmcp.domain.service.model.ReportModel;
+import es.nachobrito.tjmcp.domain.service.ReportBuilder;
+import es.nachobrito.tjmcp.domain.service.model.ReportModel;
 import gg.jte.CodeResolver;
 import gg.jte.ContentType;
 import gg.jte.TemplateEngine;

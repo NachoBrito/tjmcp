@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service.model;
+package es.nachobrito.tjmcp.domain.service.model;
 
 import java.lang.classfile.ClassModel;
 import java.lang.reflect.AccessFlag;

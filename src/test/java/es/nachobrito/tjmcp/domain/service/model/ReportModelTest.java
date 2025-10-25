@@ -14,11 +14,11 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service.model;
+package es.nachobrito.tjmcp.domain.service.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import es.nachobrito.jmcp.domain.service.JarFileHelper;
+import es.nachobrito.tjmcp.domain.service.JarFileHelper;
 import java.lang.classfile.ClassFile;
 import java.nio.file.Path;
 import java.util.Arrays;

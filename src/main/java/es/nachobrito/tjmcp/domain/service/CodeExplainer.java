@@ -14,19 +14,13 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service;
+package es.nachobrito.tjmcp.domain.service;
 
-import java.nio.file.Path;
+import java.lang.classfile.CodeModel;
 
 /**
  * @author nacho
  */
-public interface ClassDocumenter {
-  /**
-   * @param classFile the source path
-   * @return text documenting the class
-   */
-  String document(Path classFile);
-
-  String document(String className, Path jarFile);
+public interface CodeExplainer {
+  String explainCode(CodeModel codeModel);
 }
