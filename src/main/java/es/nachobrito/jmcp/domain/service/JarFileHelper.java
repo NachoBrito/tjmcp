@@ -25,7 +25,7 @@ import java.util.zip.ZipEntry;
  * @author nacho
  */
 public class JarFileHelper {
-  static byte[] readClass(String className, Path jarFilePath) {
+  public static byte[] readClass(String className, Path jarFilePath) {
     if (className.contains(".") && !className.contains("/")) {
       className = className.replace('.', '/');
     }

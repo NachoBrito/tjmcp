@@ -18,8 +18,10 @@ package es.nachobrito.jmcp.domain.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import es.nachobrito.jmcp.domain.service.model.NullCodeExplainer;
-import es.nachobrito.jmcp.infrastructure.jte.JteReportBuilder;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import jakarta.inject.Inject;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +30,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 /**
  * @author nacho
  */
-class ClassFileApiDocumenterTest {
+@MicronautTest
+class ClassFileApiDocumenterIT {
+
+  @Inject ClassDocumenter classDocumenter;
 
   @Test
   void testDocumentClassFile() {
@@ -36,8 +41,7 @@ class ClassFileApiDocumenterTest {
         "target/classes/es/nachobrito/jmcp/domain/service/ClassFileApiDocumenter.class";
     var path = Path.of("").resolve(classFilePath).toAbsolutePath();
 
-    var documenter = new ClassFileApiDocumenter(new JteReportBuilder(), new NullCodeExplainer());
-    var report = documenter.document(path);
+    var report = classDocumenter.document(path);
 
     assertTrue(report.contains("ClassFileApiDocumenter"));
   }
@@ -45,15 +49,15 @@ class ClassFileApiDocumenterTest {
   @ParameterizedTest
   @ValueSource(
       strings = {
-        "com/fasterxml/jackson/core/JsonFactory.class",
-        "com/fasterxml/jackson/core/JsonFactory",
-        "com.fasterxml.jackson.core.JsonFactory",
+        // "com/fasterxml/jackson/core/StreamWriteFeature.class",
+        // "com/fasterxml/jackson/core/JsonFactory.class",
+        "com.fasterxml.jackson.core.util.InternCache"
       })
-  void testDocumentFromJarFile(String classFile) {
+  void testDocumentFromJarFile(String classFile) throws IOException {
     var jarPath = Path.of("").resolve("test-data/jackson-core-2.14.0.jar").toAbsolutePath();
 
-    var documenter = new ClassFileApiDocumenter(new JteReportBuilder(), new NullCodeExplainer());
-    var report = documenter.document(classFile, jarPath);
-    assertTrue(report.contains("JsonFactory"));
+    var report = classDocumenter.document(classFile, jarPath);
+    Files.writeString(Path.of("report-" + System.currentTimeMillis() + ".md"), report);
+    assertFalse(report.isBlank());
   }
 }

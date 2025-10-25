@@ -30,13 +30,14 @@
     </parent>
     <properties>
         <packaging>jar</packaging>
-        <jdk.version>24</jdk.version>
-        <release.version>24</release.version>
+        <jdk.version>25</jdk.version>
+        <release.version>25</release.version>
         <micronaut.version>4.9.0</micronaut.version>
         <micronaut.aot.enabled>false</micronaut.aot.enabled>
         <micronaut.aot.packageName>es.nachobrito.aot.generated</micronaut.aot.packageName>
         <micronaut.runtime>netty</micronaut.runtime>
         <exec.mainClass>es.nachobrito.Application</exec.mainClass>
+        <jlama.version>0.8.4</jlama.version>
     </properties>
 
     <repositories>
@@ -87,6 +88,16 @@
             <artifactId>junit-jupiter-params</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>gg.jte</groupId>
+            <artifactId>jte</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-ollama</artifactId>
+            <version>1.8.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -130,9 +141,14 @@
                         <arg>-Amicronaut.processing.group=es.nachobrito</arg>
                         <arg>-Amicronaut.processing.module=jmcp</arg>
                     </compilerArgs>
-                    <source>22</source>
-                    <target>22</target>
+                    <source>25</source>
+                    <target>25</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.3</version>
             </plugin>
         </plugins>
     </build>

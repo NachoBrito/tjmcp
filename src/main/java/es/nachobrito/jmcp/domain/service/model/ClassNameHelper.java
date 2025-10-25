@@ -14,14 +14,25 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service;
+package es.nachobrito.jmcp.domain.service.model;
 
-import es.nachobrito.jmcp.domain.service.model.ReportModel;
+import java.lang.classfile.constantpool.ClassEntry;
+import java.lang.constant.ClassDesc;
 
 /**
  * @author nacho
  */
-public interface ReportBuilder {
+public class ClassNameHelper {
+  static String getFullName(ClassEntry classEntry) {
+    return getFullName(classEntry.asSymbol());
+  }
 
-  String build(ReportModel reportModel);
+  public static String getFullName(ClassDesc classDesc) {
+    var packageName = classDesc.packageName();
+    var suffix = classDesc.isArray() ? "[]" : "";
+    if (packageName != null && !packageName.isEmpty()) {
+      return classDesc.packageName() + "." + classDesc.displayName() + suffix;
+    }
+    return classDesc.displayName() + suffix;
+  }
 }

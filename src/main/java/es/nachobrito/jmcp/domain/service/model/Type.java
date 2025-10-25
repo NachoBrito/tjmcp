@@ -14,14 +14,30 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service;
+package es.nachobrito.jmcp.domain.service.model;
 
-import es.nachobrito.jmcp.domain.service.model.ReportModel;
+import java.lang.classfile.ClassModel;
 
 /**
  * @author nacho
  */
-public interface ReportBuilder {
+public enum Type {
+  CLASS("class"),
+  INTERFACE("interface"),
+  ENUM("enum"),
+  MODULE_INFO("module-info");
 
-  String build(ReportModel reportModel);
+  final String name;
+
+  Type(String name) {
+    this.name = name;
+  }
+
+  // todo: implement logic to identify interfaces and enums
+  static Type of(ClassModel model) {
+    if (model.isModuleInfo()) {
+      return MODULE_INFO;
+    }
+    return CLASS;
+  }
 }

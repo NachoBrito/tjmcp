@@ -14,14 +14,25 @@
  *    limitations under the License.
  */
 
-package es.nachobrito.jmcp.domain.service;
+package es.nachobrito.jmcp;
 
-import es.nachobrito.jmcp.domain.service.model.ReportModel;
+import io.micronaut.core.io.ResourceResolver;
+import io.micronaut.core.io.scan.ClassPathResourceLoader;
+import java.io.IOException;
+import java.nio.charset.Charset;
 
 /**
  * @author nacho
  */
-public interface ReportBuilder {
-
-  String build(ReportModel reportModel);
+public class ResourceUtil {
+  public static String getResourceAsString(String path, ResourceResolver resourceResolver) {
+      try {
+          var loader = resourceResolver.getLoader(ClassPathResourceLoader.class).orElseThrow();
+          return new String(
+              loader.getResourceAsStream(path).orElseThrow().readAllBytes(),
+              Charset.defaultCharset());
+      } catch (IOException e) {
+          throw new RuntimeException(e);
+      }
+  }
 }

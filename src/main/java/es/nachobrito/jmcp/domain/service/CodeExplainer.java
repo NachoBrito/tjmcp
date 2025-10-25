@@ -16,12 +16,11 @@
 
 package es.nachobrito.jmcp.domain.service;
 
-import es.nachobrito.jmcp.domain.service.model.ReportModel;
+import java.lang.classfile.CodeModel;
 
 /**
  * @author nacho
  */
-public interface ReportBuilder {
-
-  String build(ReportModel reportModel);
+public interface CodeExplainer {
+  String explainCode(CodeModel codeModel);
 }

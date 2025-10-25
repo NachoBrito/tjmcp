@@ -16,12 +16,18 @@
 
 package es.nachobrito.jmcp.domain.service;
 
-import es.nachobrito.jmcp.domain.service.model.ReportModel;
+import io.micronaut.context.annotation.Requires;
+import jakarta.inject.Singleton;
+import java.lang.classfile.CodeModel;
 
 /**
  * @author nacho
  */
-public interface ReportBuilder {
-
-  String build(ReportModel reportModel);
+@Singleton
+@Requires(property = "explainer", value = "debug-string")
+public class DebugStringExplainer implements CodeExplainer {
+  @Override
+  public String explainCode(CodeModel codeModel) {
+    return codeModel.toDebugString();
+  }
 }
