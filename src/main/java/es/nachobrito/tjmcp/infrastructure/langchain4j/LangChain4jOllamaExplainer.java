@@ -29,6 +29,8 @@ import io.micronaut.core.io.ResourceResolver;
 import jakarta.inject.Singleton;
 import java.lang.classfile.CodeModel;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author nacho
@@ -36,6 +38,7 @@ import java.util.List;
 @Singleton
 @Requires(property = "tjmcp.explainer", value = "langchain4j-ollama")
 public class LangChain4jOllamaExplainer implements CodeExplainer {
+    private final Logger log = LoggerFactory.getLogger(getClass());
   private final String baseUrl;
   private final String chatModelName;
   private final String systemPrompt;
@@ -57,6 +60,9 @@ public class LangChain4jOllamaExplainer implements CodeExplainer {
     this.promptTemplate =
         ResourceUtil.getResourceAsString(
             "langchain4j/ollama/prompt-template.txt", resourceResolver);
+
+    log.info("LangChain4jOllamaExplainer initialized with ollama url={} and model={}", this.baseUrl, this.chatModelName);
+
   }
 
   @Override

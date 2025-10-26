@@ -56,12 +56,12 @@ public class CachingClassDocumenter implements ClassDocumenter {
   public String document(String className, Path jarFilePath) {
     var bytes = JarFileHelper.readClass(className, jarFilePath);
     var classModel = ClassFile.of().parse(bytes);
-    return getCachedReport(classModel).orElse(documentAndCache(classModel));
+    return getCachedReport(classModel).orElseGet(() -> documentAndCache(classModel));
   }
 
   @Override
   public String document(ClassModel classModel) {
-    return getCachedReport(classModel).orElse(documentAndCache(classModel));
+    return getCachedReport(classModel).orElseGet(() -> documentAndCache(classModel));
   }
 
   Optional<String> getCachedReport(ClassModel classModel) {
