@@ -96,9 +96,10 @@ public class CachingClassDocumenter implements ClassDocumenter {
   }
 
   private String documentAndCache(ClassModel classModel) {
+    log.info("Generating report for class: {}", classModel.thisClass().asSymbol().displayName());
     var report = delegate.document(classModel);
     var cacheFile = getCacheFile(classModel);
-    log.info("Generating report: {}", cacheFile);
+
     try {
       Files.writeString(cacheFile, report);
     } catch (IOException e) {
