@@ -16,6 +16,7 @@
 
 package es.nachobrito.tjmcp.domain.service;
 
+import java.lang.classfile.ClassModel;
 import java.nio.file.Path;
 
 /**
@@ -23,10 +24,27 @@ import java.nio.file.Path;
  */
 public interface ClassDocumenter {
   /**
+   * Documents the class defined in the provide .class file
+   *
    * @param classFile the source path
    * @return text documenting the class
    */
   String document(Path classFile);
 
+  /**
+   * Documents the class with given class name that is found inside the jar file.
+   *
+   * @param className the name of the class to document
+   * @param jarFile the path to the jar file
+   * @return the text documenting the class
+   */
   String document(String className, Path jarFile);
+
+  /**
+   * Documents the class represented by the given ClassModel object
+   *
+   * @param classModel the class model
+   * @return the text documenting the class
+   */
+  String document(ClassModel classModel);
 }

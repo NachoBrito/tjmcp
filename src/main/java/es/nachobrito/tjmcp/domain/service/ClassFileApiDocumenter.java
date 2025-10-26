@@ -63,7 +63,8 @@ public class ClassFileApiDocumenter implements ClassDocumenter {
     return document(classModel);
   }
 
-  String document(ClassModel classModel) {
+  @Override
+  public String document(ClassModel classModel) {
     var model = ReportModel.with(classModel, codeExplainer);
     return reportBuilder.build(model);
   }

@@ -16,10 +16,6 @@
 
 package es.nachobrito.tjmcp.domain.service;
 
-import io.micronaut.context.annotation.Replaces;
-import io.micronaut.context.annotation.Requires;
-import io.micronaut.context.annotation.Value;
-import jakarta.inject.Singleton;
 import java.io.File;
 import java.io.IOException;
 import java.lang.classfile.ClassFile;
@@ -33,17 +29,13 @@ import org.slf4j.LoggerFactory;
 /**
  * @author nacho
  */
-@Singleton
-@Replaces(ClassDocumenter.class)
-@Requires(property = "tjmcp.cache-folder")
 public class CachingClassDocumenter implements ClassDocumenter {
   private final Logger log = LoggerFactory.getLogger(getClass());
   private final Path cacheFolder;
-  private final ClassFileApiDocumenter delegate;
+  private final ClassDocumenter delegate;
 
-  public CachingClassDocumenter(
-      @Value("${tjmcp.cache-folder}") String cacheFolderPath, ClassFileApiDocumenter delegate) {
-    cacheFolder = Path.of(cacheFolderPath);
+  public CachingClassDocumenter(Path cacheFolderPath, ClassDocumenter delegate) {
+    cacheFolder = cacheFolderPath;
     this.delegate = delegate;
     log.info("Caching to folder {} enabled", cacheFolder.toAbsolutePath());
   }
@@ -64,6 +56,11 @@ public class CachingClassDocumenter implements ClassDocumenter {
   public String document(String className, Path jarFilePath) {
     var bytes = JarFileHelper.readClass(className, jarFilePath);
     var classModel = ClassFile.of().parse(bytes);
+    return getCachedReport(classModel).orElse(documentAndCache(classModel));
+  }
+
+  @Override
+  public String document(ClassModel classModel) {
     return getCachedReport(classModel).orElse(documentAndCache(classModel));
   }
 
